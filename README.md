@@ -14,18 +14,18 @@ Provides tools for vector calculus.
 - ld (with gcc)
 ### Make
 To build :
-```makefile
-make
+```shell
+$ make
 ```
 To build and run :
-```makefile
-make run
+```shell
+$ make run
 ```
 To clean the project (removes temporary and executable files) :
-```makefile
-make clean
+```shell
+$ make clean
 ```
 To flush the project (removes only temporary files) :
-```makefile
-make flush
+```shell
+$ make flush
 ```
