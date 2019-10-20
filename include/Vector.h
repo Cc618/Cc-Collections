@@ -1,6 +1,7 @@
 #pragma once
 
 #include <inttypes.h>
+#include <iostream>
 
 namespace cc
 {
@@ -17,9 +18,9 @@ namespace cc
 
 		~Vector();
 
-	private:
+	// private:
 		// The raw data
-		T **_data;
+		T *_data;
 
 		// Elements amount
 		size_t _count;
@@ -48,7 +49,14 @@ namespace cc
 
 		// Set the data
 		for (size_t i = 0; i < COUNT; ++i)
-			data[COUNT] = VALUE;
+			_data[i] = VALUE;
+	}
+
+	template <typename T>
+	Vector<T>::~Vector()
+	{
+		// Free
+		delete[] _data;
 	}
 
 	//// Methods ////

@@ -1,2 +1,5 @@
 bin/*
 tmp/*
+.vscode/*
+.gdb_history
+peda-session-main.txt
