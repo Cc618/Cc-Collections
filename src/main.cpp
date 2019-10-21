@@ -2,17 +2,15 @@
 
 #include "Vector.h"
 
-extern void tst();
-
 int main()
 {
 	using namespace cc;
 	
-	Vector<int> vec(30, 3);
+	Vector<int> v(3);
 
-	std::cout << vec._data[3];
+	v.set(1, 42);
 
-	tst();
+	v.print();
 
 	return 0;
 }
