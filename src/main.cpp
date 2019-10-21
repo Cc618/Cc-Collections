@@ -2,6 +2,7 @@
 
 #include "Vector.h"
 
+extern void tst();
 
 int main()
 {
@@ -10,6 +11,8 @@ int main()
 	Vector<int> vec(30, 3);
 
 	std::cout << vec._data[3];
+
+	tst();
 
 	return 0;
 }
