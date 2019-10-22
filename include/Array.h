@@ -8,18 +8,18 @@
 namespace cc
 {
 	template <typename T>
-	class Vector
+	class Array
 	{
 	public:
 		//// Constructors ////
 		// Data is null
-		Vector();
+		Array();
 		// Inits the array with COUNT elements (default value)
-		explicit Vector(const size_t COUNT);
+		explicit Array(const size_t COUNT);
 		// Inits the array with COUNT elements of value VALUE
-		Vector(const size_t COUNT, const T& VALUE);
+		Array(const size_t COUNT, const T& VALUE);
 
-		~Vector();
+		~Array();
 
 	public:
 		//// Setters ////
@@ -44,7 +44,7 @@ namespace cc
 			return _data;
 		}
 
-		// Returns the string version of the vector (like in print but without the new line)
+		// Returns the string version of the array (like in print but without the new line)
 		std::string toString() const;
 
 		// Prints the data
@@ -61,12 +61,12 @@ namespace cc
 
 	//// Constructors ////
 	template <typename T>
-	Vector<T>::Vector()
+	Array<T>::Array()
 		: _data(nullptr), _count(0)
 	{}
 
 	template <typename T>
-	Vector<T>::Vector(const size_t COUNT)
+	Array<T>::Array(const size_t COUNT)
 		: _count(COUNT)
 	{
 		// Allocate
@@ -74,7 +74,7 @@ namespace cc
 	}
 
 	template <typename T>
-	Vector<T>::Vector(const size_t COUNT, const T& VALUE)
+	Array<T>::Array(const size_t COUNT, const T& VALUE)
 		: _count(COUNT)
 	{
 		// Allocate
@@ -86,7 +86,7 @@ namespace cc
 	}
 
 	template <typename T>
-	Vector<T>::~Vector()
+	Array<T>::~Array()
 	{
 		// Free
 		delete[] _data;
@@ -94,9 +94,9 @@ namespace cc
 
 	//// Getters ////
 	template <typename T>
-	std::string Vector<T>::toString() const
+	std::string Array<T>::toString() const
 	{
-		// Empty vector
+		// Empty array
 		if (_count == 0)
 			return "[]";
 
@@ -114,7 +114,7 @@ namespace cc
 	}
 
 	template <typename T>
-	void Vector<T>::print() const
+	void Array<T>::print() const
 	{
 		std::cout << toString() << '\n';
 	}

@@ -1,5 +1,8 @@
-# Cc-Vector
-Provides tools for vector calculus.
+# Cc-Collections
+Provides tools to store data.
+
+## Objects
+- Array : Stores data linearly. The size can be changed by reallocation only (semi dynamic array). 
 
 ## Project Structure
 - include : Header files

@@ -1,16 +1,16 @@
 #include <iostream>
 
-#include "Vector.h"
+#include "Array.h"
 
 int main()
 {
 	using namespace cc;
 	
-	Vector<int> v(3);
+	Array<int> a(3);
 
-	v.set(1, 42);
+	a.set(1, 42);
 
-	v.print();
+	a.print();
 
 	return 0;
 }
