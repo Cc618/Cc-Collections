@@ -3,6 +3,7 @@
 #include <inttypes.h>
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <sstream>
 
 namespace cc
@@ -14,6 +15,8 @@ namespace cc
 		//// Constructors ////
 		// Data is null
 		Array();
+		// Copy
+		Array(const Array& OTHER);
 		// Inits the array with COUNT elements (default value)
 		explicit Array(const size_t COUNT);
 		// Inits the array with COUNT elements of value VALUE
@@ -50,6 +53,17 @@ namespace cc
 		// Prints the data
 		void print() const;
 
+	public:
+		//// Operators ////
+		Array &operator=(const Array& OTHER);
+
+	private:
+		//// Procedures ////
+		// Copies an array of the same size into this array
+		// !!! The size of the other array is not checked
+		// !!! The size of this array is not updated
+		void copy(const Array& OTHER);
+
 	private:
 		//// Attributes ////
 		// The raw data
@@ -59,11 +73,19 @@ namespace cc
 		size_t _count;
 	};
 
+
 	//// Constructors ////
 	template <typename T>
 	Array<T>::Array()
 		: _data(nullptr), _count(0)
 	{}
+
+	template <typename T>
+	Array<T>::Array(const Array& OTHER)
+		: _count(OTHER._count)
+	{
+		copy(OTHER);
+	}
 
 	template <typename T>
 	Array<T>::Array(const size_t COUNT)
@@ -92,6 +114,7 @@ namespace cc
 		delete[] _data;
 	}
 
+
 	//// Getters ////
 	template <typename T>
 	std::string Array<T>::toString() const
@@ -117,5 +140,32 @@ namespace cc
 	void Array<T>::print() const
 	{
 		std::cout << toString() << '\n';
+	}
+
+
+	//// Operators ////
+	template <typename T>
+	Array<T> &Array<T>::operator=(const Array& OTHER)
+	{
+		// Free memory
+		delete[] _data;
+
+		// Copy
+		_count = OTHER._count;
+		copy(OTHER);
+
+		return *this;
+	}
+
+
+	//// Procedures ////
+	template <typename T>
+	void Array<T>::copy(const Array& OTHER)
+	{
+		// Reallocate data
+		_data = new T[_count];
+
+		// Copy data
+		std::memcpy(_data, OTHER._data, sizeof(T) * _count);
 	}
 }

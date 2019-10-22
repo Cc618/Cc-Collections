@@ -9,7 +9,7 @@ OBJ_DIR := ./tmp
 BIN_DIR := ./bin
 
 # Flags
-BUILD_FLAGS := -I $(INC_DIR)
+BUILD_FLAGS := -I $(INC_DIR) -Wall
 OBJ_FLAGS := -MMD
 LINK_FLAGS :=
 
