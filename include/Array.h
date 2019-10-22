@@ -3,8 +3,9 @@
 #include <inttypes.h>
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <sstream>
+#include <cstring>
+#include <cassert>
 
 namespace cc
 {
@@ -23,15 +24,6 @@ namespace cc
 		Array(const size_t COUNT, const T& VALUE);
 
 		~Array();
-
-	public:
-		//// Setters ////
-		// !!! Temporary method
-		// TODO : Overload operators + memory safe
-		void set(size_t index, const T& VALUE)
-		{
-			_data[index] = VALUE;
-		}
 
 	public:
 		//// Getters ////
@@ -55,7 +47,12 @@ namespace cc
 
 	public:
 		//// Operators ////
+		// Set
 		Array &operator=(const Array& OTHER);
+		
+		// At
+		T &operator[](const size_t i);
+		T operator[](const size_t i) const;
 
 	private:
 		//// Procedures ////
@@ -115,6 +112,9 @@ namespace cc
 	}
 
 
+	//// Setters ////
+
+
 	//// Getters ////
 	template <typename T>
 	std::string Array<T>::toString() const
@@ -155,6 +155,24 @@ namespace cc
 		copy(OTHER);
 
 		return *this;
+	}
+
+	template <typename T>
+	T &Array<T>::operator[](const size_t i)
+	{
+		// i is beyond limits
+		assert(i < _count && "The index is beyond limits");
+
+		return _data[i];
+	}
+
+	template <typename T>
+	T Array<T>::operator[](const size_t i) const
+	{
+		// i is beyond limits
+		assert(i < _count && "The index is beyond limits");
+
+		return _data[i];
 	}
 
 

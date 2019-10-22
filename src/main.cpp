@@ -6,23 +6,13 @@ int main()
 {
 	using namespace cc;
 	
-	Array<int> a(3, -1);
-	// a = {-1, -1, -1}
-	
-	a.set(1, 42);
-	// a = {-1, 42, -1}
+	Array<int> a(3, 2);
 
-	auto b = a;
-	// b = {-1, 42, -1}
+	a[10] = 9;
 
-	b.set(2, 3);
-	// b = {-1, 42, 3}
+	std::cout << a[1] << '\n';
 
-	a.set(0, 116);
-	// b = {116, 42, -1}
-
-	std::cout << "a: " << a << '\n';
-	std::cout << "b: " << b << '\n';
+	a.print();
 
 	return 0;
 }
