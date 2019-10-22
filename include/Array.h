@@ -168,4 +168,15 @@ namespace cc
 		// Copy data
 		std::memcpy(_data, OTHER._data, sizeof(T) * _count);
 	}
+
+
+	//// Functions ////
+	// aucun opérateur "<<" ne correspond à ces opérandes -- les types d'opérandes sont : std::basic_ostream<char, std::char_traits<char>> << cc::Array<int>
+	template <typename T>
+	std::ostream& operator<<(std::ostream& stream, const Array<T>& ARRAY)
+	{
+		stream << ARRAY.toString();
+
+		return stream;
+	}
 }

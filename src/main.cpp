@@ -21,8 +21,8 @@ int main()
 	a.set(0, 116);
 	// b = {116, 42, -1}
 
-	a.print();
-	b.print();
+	std::cout << "a: " << a << '\n';
+	std::cout << "b: " << b << '\n';
 
 	return 0;
 }
