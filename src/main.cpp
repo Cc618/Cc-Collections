@@ -26,5 +26,3 @@ int main()
 
 	return 0;
 }
-
-// TODO: std::ostream& operator<<(std::ostream& stream, const Array<T>& ARRAY);
