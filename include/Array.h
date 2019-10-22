@@ -26,6 +26,11 @@ namespace cc
 		~Array();
 
 	public:
+		//// Methods ////
+		// Reallocates the data with a new size
+		void resize(const size_t COUNT);
+
+	public:
 		//// Getters ////
 		// Returns the number of items
 		inline size_t getCount() const
@@ -49,7 +54,7 @@ namespace cc
 		//// Operators ////
 		// Set
 		Array &operator=(const Array& OTHER);
-		
+
 		// At
 		T &operator[](const size_t i);
 		T operator[](const size_t i) const;
@@ -112,7 +117,40 @@ namespace cc
 	}
 
 
-	//// Setters ////
+	//// Methods ////
+	template <typename T>
+	void Array<T>::resize(const size_t COUNT)
+	{
+		// For empty array, don't allocate data
+		if (COUNT == 0)
+		{
+			// Free
+			delete[] _data;
+
+			_count = 0;
+			_data = nullptr;
+			
+			return;
+		}
+
+		// Save old data
+		T *const oldData = _data;
+
+		// Allocate new data
+		_data = new T[COUNT];
+
+		if (oldData)
+		{
+			// Copy data
+			std::memcpy(_data, oldData, sizeof(T) * std::min(_count, COUNT));
+
+			// Free old data
+			delete[] oldData;
+		}
+
+		// Update count
+		_count = COUNT;
+	}
 
 
 	//// Getters ////
@@ -120,18 +158,18 @@ namespace cc
 	std::string Array<T>::toString() const
 	{
 		// Empty array
-		if (_count == 0)
-			return "[]";
+		if (!_data)
+			return "{}";
 
 		// Use string stream for optimization
 		std::ostringstream out;
-		out << "{" << std::to_string(_data[0]);
+		out << "{ " << std::to_string(_data[0]);
 
 		// Add comma separated numbers
 		for (size_t i = 1; i < _count; ++i)
 			out << ", " << std::to_string(_data[i]);
 		
-		out << "}";
+		out << " }";
 
 		return out.str();
 	}
